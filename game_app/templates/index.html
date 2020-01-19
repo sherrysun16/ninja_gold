@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- This will hold the total gold the ninja has -->
+        <form action="/" method="post">
+            {% csrf_token %}
+            click time :
+            <input type="text" name = 'count1'>
+            gold score:
+            <input type="text" name = 'gold'>
+            <button>submit</button>
+        </form>
+
+        <div class="gold_bar">
+            <label for="total_gold">Your Gold: </label>
+            
+                
+                    <p class="gold_display">
+                        {{request.session.gold}}
+                    </p>
+                
+            
+            <!-- <input type="text" name="total_gold"> -->
+        </div>
+
+        <!-- This is the FARM card, nested is a form -->
+        <div class="cards">
+            <form action="button1" name="farm" >
+                {% csrf_token %}
+                <h3>Farm</h3>
+                <p>(earns 10-20 golds)</p>
+                <button>Find Gold!</button>
+            </form>
+        </div>
+
+        <!-- This is the CAVE card, nested is a form -->
+        <div class="cards">
+            
+                {% csrf_token %}
+                <h3>Cave</h3>
+                <p>(earns 5-10 golds)</p>
+                <a href="http://localhost:8000/button2">submit</a>
+            
+        </div>
+
+        <!-- This is the HOUSE card, nested is a form -->
+        <div class="cards">
+            <form action="button3" name="house" method="POST">
+                {% csrf_token %}
+                <h3>House</h3>
+                <p>(earns 2-5 golds)</p>
+                <button>Find Gold!</button>
+            </form>
+        </div>
+
+        <!-- This is the CASINO card, nested is a form -->
+        <div class="cards">
+            <form action="button4" name="casino" method="POST">
+                {% csrf_token %}
+                <h3>Casino</h3>
+                <p>(earns/takes 0-50 golds)</p>
+                <button>Gamble Gold!</button>
+            </form>
+        </div>
+        <!-- This is the TEXT AREA that tracks input -->
+        <p>Activities:</p>
+        <div class="text_area">
+                <ul>
+                    {% for c in request.session.comments %}
+                       <li> {{c}}</li>
+                       <ul>
+                        <!-- looping through each author's books! -->
+                        {% for u in d.students.all %}	
+                          <li><em>{{u.firstname}} {{u.lastname}}</em></li>
+                        {% endfor %}
+                      </ul>
+                    {% endfor  %}
+                </ul>
+            <!-- </div> -->
+        </div>
+    </div>
+
+</body>
+
+</html>

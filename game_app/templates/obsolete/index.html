@@ -1,0 +1,6 @@
+<h1>Your gold:! {{request.session.gold}}</h1>
+<textarea name = "textarea"></textarea>
+<form action="button1" method="post">
+    {% csrf_token %}
+    <button>submit</button>
+</form>
